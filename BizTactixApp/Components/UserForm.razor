@@ -1,0 +1,51 @@
+﻿@if(Model != null)
+{
+<EditForm Model=@Model OnValidSubmit=Update>
+    <DataAnnotationsValidator/>
+    <ValidationSummary />
+    <MudTextField Label="First Name" HelperText="Your first name" @bind-Value="Model.FirstName" Required="true" />
+    <MudTextField Label="Last Name" HelperText="Your last name" @bind-Value="Model.LastName" Required="true" />
+    <MudTextField Label="Email" HelperText="Your email" @bind-Value="Model.Email" Required="true" />
+
+    <!-- Mobile Phone -->
+    <MudField  Label="Mobile Phone">
+        <MudTextField Label="Dialing Country Code" @bind-Value="Model.mobilePhone.dialingCountryCode" />
+        <MudTextField Label="Phone Number" @bind-Value="Model.mobilePhone.phoneNumber" />
+    </MudField>
+
+    <!-- Phone -->
+    <MudField  Label="Phone">
+        <MudTextField Label="Dialing Country Code" @bind-Value="Model.phone.dialingCountryCode" />
+        <MudTextField Label="Phone Number" @bind-Value="Model.phone.phoneNumber" />
+    </MudField>
+
+    <!-- Company Name -->
+    <MudTextField Label="Company Name" @bind-Value="Model.Company" />
+
+    <!--Sample Addresses -->
+    <MudField  Label="Addresses">
+        <div class="mb-3">
+            <MudTextField Label="Address" HelperText="Your address" @bind-Value="Model.Address" />
+            <MudTextField Label="Address 2" @bind-Value="Model.Address1" />
+            <MudTextField Label="City" HelperText="Your city" @bind-Value="Model.City" />
+            <MudTextField Label="Region" HelperText="Your region" @bind-Value="Model.Region" />
+            <MudTextField Label="Postal Code" HelperText="Your postal code" @bind-Value="Model.PostalCode" />
+            <MudSelect Label="Country Code" @bind-Value="Model.CountryCode">
+                @foreach (CountryCode item in Enum.GetValues(typeof(CountryCode)))
+                {
+                    <MudSelectItem Value="item">@item.ToString()</MudSelectItem>
+                }
+            </MudSelect>
+        </div>
+    </MudField>
+     <MudCardActions>
+             <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Disabled=@IsUpdating Class="ml-auto">@(IsUpdating ? "Loading" : "Submit")</MudButton>
+    </MudCardActions>
+</EditForm>
+}
+@if (IsShowMessage)
+{
+    <MudText Color="@Color.Info">
+       <p>@Message</p>
+    </MudText>
+}

@@ -1,0 +1,24 @@
+﻿<EditForm Model="@Model" OnValidSubmit="Login">
+    <DataAnnotationsValidator />
+    <MudGrid>
+        <MudItem xs="12" sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <MudTextField Label="Username" HelperText="Enter your username" Class="mt-3"
+                    @bind-Value="Model.username" For="@(() => Model.username)" />
+                    <MudTextField Label="Password" HelperText="Enter your password" Class="mt-3"
+                    @bind-Value="Model.password" For="@(() => Model.password)" InputType="InputType.Password" />
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Disabled=@IsLogin Class="ml-auto">@(IsLogin ? "Loading" : "Submit")</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+@if (IsShowError)
+{
+    <MudText Color="@Color.Error">
+       <p>Invalid username or password</p>
+    </MudText>
+}

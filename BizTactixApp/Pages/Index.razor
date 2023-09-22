@@ -1,0 +1,11 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+@if (PageState != null && PageState.User == null)
+{
+    <BizTactixApp.Components.LoginForm OnSuccess=OnSuccessLogin />
+}
+else
+{
+    <BizTactixApp.Components.UserInfo />
+}

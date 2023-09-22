@@ -1,0 +1,114 @@
+﻿<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- User Profile Section -->
+            <div class="user-card">
+                <h4 class="card-title text-center">User Profile</h4>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p><strong>First Name:</strong>@PageState.User.firstName</p>
+                        <p><strong>Last Name:</strong>@PageState.User.lastName</p>
+                        <p><strong>Email:</strong>@PageState.User.email</p>
+                    </div>
+                    <div>
+                        <p><strong>Phone Number:</strong>@PageState.User.mobilePhone.phoneNumber</p>
+                    </div>
+                </div>
+                <!-- Edit Info Button -->
+                <a class="btn btn-primary btn-block edit-button" href="/edit">
+                    Edit Info
+                </a>
+            </div>
+            <div class="file-card">
+                <h4 class="card-title text-center">File</h4>
+                <hr>
+                @if (PageState.User.files != null && PageState.User.files.Any())
+                {
+                    <div>
+                        <h5>File</h5>
+                        <p><strong>File ID:</strong>@PageState.User.files.FirstOrDefault().fileId</p>
+                        <p><strong>File Name:</strong>@PageState.User.files.FirstOrDefault().fileName</p>
+                        <p><strong>File Type:</strong>@PageState.User.files.FirstOrDefault().fileType</p>
+                        <p><strong>ID Type:</strong>@PageState.User.files.FirstOrDefault().idType.ToString()</p>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <p><strong>No files found</strong></p>
+                    </div>
+                }
+
+            </div>
+            <div class="interview-card">
+                <h4 class="card-title text-center">Interview</h4>
+                <hr>
+                @if (PageState.User.interviews != null && PageState.User.interviews.Any())
+                {
+                    <div>
+                        <h5>Interview</h5>
+                        <p><strong>Title:</strong>@PageState.User.interviews.FirstOrDefault().title</p>
+                        <p><strong>Interviewers:</strong>@PageState.User.interviews.FirstOrDefault().interviewers</p>
+                        <p><strong>Status:</strong>@PageState.User.interviews.FirstOrDefault().status.ToString()</p>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <p><strong>No interview history found</strong></p>
+                    </div>
+                }
+
+            </div>
+            <div class="address-card">
+                <h4 class="card-title text-center">Address</h4>
+                <hr>
+                @if (PageState.User.addresses != null && PageState.User.addresses.Any())
+                {
+                    var address = PageState.User.addresses.FirstOrDefault();
+                    <div>
+                        <h5>Address</h5>
+                        <p><strong>Address:</strong>@address.address</p>
+                        <p><strong>Address 2:</strong>@address.address2</p>
+                        <p><strong>City:</strong>@address.city</p>
+                        <p><strong>Region:</strong>@address.region</p>
+                        <p><strong>Postal Code:</strong>@address.postalCode</p>
+                        <p><strong>Country Code:</strong>@address.countryCode.ToString()</p>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <p><strong>No address found</strong></p>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    /* Customize the styles here */
+    .user-card, .file-card, .interview-card, .address-card {
+        background-color: #f8f9fa; /* Light gray background */
+        border: 1px solid #ced4da;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .card-title {
+        color: #007bff; /* Blue title color */
+    }
+
+    .card hr {
+        border-top: 1px solid #ccc;
+    }
+
+    .card p {
+        margin-bottom: 10px;
+    }
+
+</style>
